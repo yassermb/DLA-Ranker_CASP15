@@ -58,12 +58,12 @@ the interfacial residues along with their neighboring atoms and the regions of t
 #### Packages:
 
 DLA-Ranker can be run on Linux, MacOS, and Windows. We recommend to use DLA-Ranker on the machines with GPU. It requires following packages:
-- [NACCESS] (http://www.bioinf.manchester.ac.uk/naccess/)
+- [FreeSASA](https://github.com/mittinatten/freesasa) or [NACCESS](http://www.bioinf.manchester.ac.uk/naccess/)
 - [ProDy] (http://prody.csb.pitt.edu/) 
 - Python version 3.7 or 3.8.
 - Tensorflow version 2.2 or 2.3.
 - Cuda-Toolkit
-- Scikit-Learn, numpy pandas matplotlib lz4 and tqdm (conda install -c pytorch -c pyg -c conda-forge python=3.9 numpy pandas matplotlib tqdm pytorch pyg scikit-learn cuda-toolkit lz4).
+- Scikit-Learn, numpy pandas matplotlib lz4 and tqdm (conda install -c pytorch -c pyg -c conda-forge python=3.9 numpy pandas matplotlib tqdm pytorch pyg scikit-learn cuda-toolkit).
 
 All-in-one: Run conda create --name dla-ranker --file dla-ranker.yml
 
@@ -88,11 +88,10 @@ Evaluation
     |
     ..........
 ```
-Specify the path to NACCESS in ```lib/tools.py``` (```NACCESS_PATH```). From directory 'Representation' run: ```python generate_cubes.py```
+Specify the path to FreeSASA or NACCESS in ```lib/tools.py``` (```FREESASA_PATH``` or ```NACCESS_PATH```). The choice between FreeSASA or NACCESS can be specified in the ```lib/tools.py``` (default is FreeSASA) <br>
+If you have 'Nvidia GPU' on your computer, or execute on 'Google COLAB', set ```FORCE_CPU = False``` in ```lib/tools.py```. Otherwise set ```FORCE_CPU = True``` (default is FORCE_CPU=True). <br>
 
-Run evaluation.py from Evaluation directory. The choice between FreeSASA or NACCESS is in the tools/lib.py  (default is FreeSASA). The choice between FORCE_CPU is in tools/lib.py . -default is FORCE_CPU=True). the file evaluation.py is actually the modified  version of generate_cubes.py in which other modules are integrated! I commented the unwanted codes so it's easy for you to compare. If this version is ok I will put it on repository. 
-
-It processes all the target complexes and their conformations and produces a csv file 'predictions_SCR' for each target complex. Each row of the output file belongs to a conformation and it has 9 columns separated by 'tab':
+Run evaluation.py from Evaluation directory. It processes all the target complexes and their conformations and produces a csv file 'predictions_SCR' for each target complex. Each row of the output file belongs to a conformation and it has 9 columns separated by 'tab':
 
 Name of target complex and the conformation (`Conf`) <br>
 Fold Id (`Fold`) <br>
