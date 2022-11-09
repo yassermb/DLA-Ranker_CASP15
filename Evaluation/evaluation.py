@@ -181,7 +181,7 @@ def process_targetcomplex(targetcomplex, comp_dir, report_dict):
                     all_scores, start, end = tst.predict(test_interface, X_test, y_test, reg_type, res_pos, info)
                     
                     if all_scores is None:
-                        raise Exception("Prediction faile!")
+                        raise Exception("Prediction failed!")
                     
                     test_preds = all_scores.mean()
                     predictions_file.write(test_interface + '\t' +
